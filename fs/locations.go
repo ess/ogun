@@ -1,18 +1,18 @@
 package fs
 
 import (
-	"github.com/ess/conan"
+	"github.com/ess/ogun"
 )
 
-func applicationPath(app conan.Application) string {
+func applicationPath(app ogun.Application) string {
 	return "/data/" + app.Name
 }
 
-func configPath(app conan.Application) string {
+func configPath(app ogun.Application) string {
 	return applicationPath(app) + "/shared/config"
 }
 
-func cachePath(app conan.Application) string {
+func cachePath(app ogun.Application) string {
 	return applicationPath(app) + "/shared/build_cache"
 }
 
@@ -20,6 +20,6 @@ func buildpackRoot() string {
 	return "/engineyard/buildpacks/"
 }
 
-func buildpackPath(pack conan.Buildpack) string {
+func buildpackPath(pack ogun.Buildpack) string {
 	return buildpackRoot() + pack.Name
 }

@@ -6,15 +6,15 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/ess/conan"
+	"github.com/ess/ogun"
 )
 
 type LoggedRunner struct {
 	context string
-	logger  conan.Logger
+	logger  ogun.Logger
 }
 
-func NewLoggedRunner(context string, logger conan.Logger) *LoggedRunner {
+func NewLoggedRunner(context string, logger ogun.Logger) *LoggedRunner {
 	return &LoggedRunner{context: context, logger: logger}
 }
 
@@ -45,13 +45,13 @@ func (runner *LoggedRunner) Execute(command string) ([]byte, error) {
 }
 
 type passThrough struct {
-	log     conan.Logger
+	log     ogun.Logger
 	context string
 	level   string
 	output  *bytes.Buffer
 }
 
-func newPassThrough(log conan.Logger, context string, level string, output *bytes.Buffer) *passThrough {
+func newPassThrough(log ogun.Logger, context string, level string, output *bytes.Buffer) *passThrough {
 	return &passThrough{
 		log:     log,
 		context: context,

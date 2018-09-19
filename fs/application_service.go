@@ -1,17 +1,17 @@
 package fs
 
 import (
-	"github.com/ess/conan"
+	"github.com/ess/ogun"
 )
 
 type ApplicationService struct {
-	logger conan.Logger
+	logger ogun.Logger
 }
 
-func NewApplicationService(logger conan.Logger) ApplicationService {
+func NewApplicationService(logger ogun.Logger) ApplicationService {
 	return ApplicationService{logger: logger}
 }
 
-func (service ApplicationService) Get(name string) (conan.Application, error) {
-	return conan.Application{Name: name}, nil
+func (service ApplicationService) Get(name string) (ogun.Application, error) {
+	return ogun.Application{Name: name}, nil
 }

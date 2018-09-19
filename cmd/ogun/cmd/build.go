@@ -5,10 +5,10 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/ess/conan/fs"
-	"github.com/ess/conan/log"
+	"github.com/ess/ogun/fs"
+	"github.com/ess/ogun/log"
 
-	"github.com/ess/conan/cmd/conan/workflows"
+	"github.com/ess/ogun/cmd/ogun/workflows"
 )
 
 // 2018 08 29 22 43 47

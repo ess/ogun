@@ -1,4 +1,4 @@
-package conan
+package ogun
 
 type Release struct {
 	Name        string

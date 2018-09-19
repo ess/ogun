@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/ess/conan/cmd/conan/cmd"
+	"github.com/ess/ogun/cmd/ogun/cmd"
 )
 
 func main() {

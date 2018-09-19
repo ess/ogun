@@ -1,12 +1,12 @@
 # This how we want to name the binary output
-BINARY=conan
+BINARY=ogun
 
 # These are the values we want to pass for VERSION and BUILD
 # git tag 1.0.1
 # git commit -am "One more change after the tags"
 VERSION=`./scripts/genver`
 BUILD=`date +%FT%T%z`
-PACKAGE="github.com/ess/conan/cmd/conan"
+PACKAGE="github.com/ess/ogun/cmd/ogun"
 TARGET="builds/${BINARY}-${VERSION}"
 PREFIX="${TARGET}/${BINARY}-${VERSION}"
 TESTFILES=`go list ./... | grep -v /vendor/`

@@ -1,4 +1,4 @@
-package conan
+package ogun
 
 type Buildpack struct {
 	Name     string

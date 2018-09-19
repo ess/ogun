@@ -4,17 +4,17 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/ess/conan"
+	"github.com/ess/ogun"
 )
 
 type BuildingAnApp struct {
 	BuildpackName   string
 	ApplicationName string
 	ReleaseName     string
-	Apps            conan.ApplicationService
-	Packs           conan.BuildpackService
-	Releases        conan.ReleaseService
-	Logger          conan.Logger
+	Apps            ogun.ApplicationService
+	Packs           ogun.BuildpackService
+	Releases        ogun.ReleaseService
+	Logger          ogun.Logger
 }
 
 func (workflow *BuildingAnApp) perform() error {
@@ -59,7 +59,7 @@ func (workflow *BuildingAnApp) perform() error {
 	return nil
 }
 
-func (workflow *BuildingAnApp) loadApplication() (conan.Application, error) {
+func (workflow *BuildingAnApp) loadApplication() (ogun.Application, error) {
 	app, err := workflow.Apps.Get(workflow.ApplicationName)
 	if err != nil {
 		workflow.Logger.Error(
@@ -71,8 +71,8 @@ func (workflow *BuildingAnApp) loadApplication() (conan.Application, error) {
 	return app, err
 }
 
-func (workflow *BuildingAnApp) loadBuildpack(app conan.Application) (conan.Buildpack, error) {
-	var pack conan.Buildpack
+func (workflow *BuildingAnApp) loadBuildpack(app ogun.Application) (ogun.Buildpack, error) {
+	var pack ogun.Buildpack
 	var err error
 
 	if workflow.BuildpackName == "detect" {
@@ -91,7 +91,7 @@ func (workflow *BuildingAnApp) loadBuildpack(app conan.Application) (conan.Build
 	return pack, err
 }
 
-func (workflow *BuildingAnApp) createRelease(app conan.Application) (conan.Release, error) {
+func (workflow *BuildingAnApp) createRelease(app ogun.Application) (ogun.Release, error) {
 
 	release, err := workflow.Releases.Create(workflow.ReleaseName, app)
 	if err != nil {

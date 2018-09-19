@@ -8,9 +8,15 @@ import (
 )
 
 var RootCmd = &cobra.Command{
-	Use:   "conan",
-	Short: "Conan the Deployer",
-	Long:  `Conan the Deployer`,
+	Use:   "ogun",
+	Short: "Ogun, God of Metalcraft",
+	Long: `Ogun, God of Metalcraft
+	
+Ogun is a utiltiy used, primarily, for crafting portable application releases on
+bare metal.
+
+This is the top level of that utility, which does not do very much. Please see
+below for subcommands that do much more.`,
 }
 
 func Execute() error {
@@ -29,7 +35,7 @@ func init() {
 
 func initConfig() {
 	viper.SetConfigName("config")
-	viper.AddConfigPath("/etc/conan")
+	viper.AddConfigPath("/etc/ogun")
 
 	viper.AutomaticEnv()
 

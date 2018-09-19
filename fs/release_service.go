@@ -3,20 +3,20 @@ package fs
 import (
 	"fmt"
 
-	"github.com/ess/conan"
-	exec "github.com/ess/conan/os"
+	"github.com/ess/ogun"
+	exec "github.com/ess/ogun/os"
 )
 
 type ReleaseService struct {
-	Logger conan.Logger
+	Logger ogun.Logger
 }
 
-func NewReleaseService(logger conan.Logger) ReleaseService {
+func NewReleaseService(logger ogun.Logger) ReleaseService {
 	return ReleaseService{Logger: logger}
 }
 
-func (service ReleaseService) Create(name string, app conan.Application) (conan.Release, error) {
-	rel := conan.Release{Name: name, Application: app}
+func (service ReleaseService) Create(name string, app ogun.Application) (ogun.Release, error) {
+	rel := ogun.Release{Name: name, Application: app}
 	path, err := service.createReleasePath(app, name)
 	if err != nil {
 		return rel, fmt.Errorf("could not create " + path)
@@ -27,7 +27,7 @@ func (service ReleaseService) Create(name string, app conan.Application) (conan.
 	return rel, err
 }
 
-func (service ReleaseService) applyConfig(release conan.Release) error {
+func (service ReleaseService) applyConfig(release ogun.Release) error {
 	context := "apply-config"
 	app := release.Application
 
@@ -44,7 +44,7 @@ func (service ReleaseService) applyConfig(release conan.Release) error {
 	return err
 }
 
-func (service ReleaseService) Build(release conan.Release, pack conan.Buildpack) error {
+func (service ReleaseService) Build(release ogun.Release, pack ogun.Buildpack) error {
 	compile := buildpackPath(pack) + "/bin/compile"
 	buildPath := applicationPath(release.Application) + "/builds/" + release.Name
 
@@ -64,11 +64,11 @@ func (service ReleaseService) Build(release conan.Release, pack conan.Buildpack)
 	return err
 }
 
-func (service ReleaseService) Clean(release conan.Release) error {
+func (service ReleaseService) Clean(release ogun.Release) error {
 	return fmt.Errorf("not implemented")
 }
 
-func (service ReleaseService) Package(release conan.Release) error {
+func (service ReleaseService) Package(release ogun.Release) error {
 	context := "release/package"
 
 	buildPath := applicationPath(release.Application) + "/builds/" + release.Name
@@ -93,7 +93,7 @@ func (service ReleaseService) Package(release conan.Release) error {
 	return nil
 }
 
-func (service ReleaseService) createReleasePath(app conan.Application, name string) (string, error) {
+func (service ReleaseService) createReleasePath(app ogun.Application, name string) (string, error) {
 	path := applicationPath(app) + "/builds/" + name
 
 	err := CreateDir(path, 0700)
@@ -101,13 +101,13 @@ func (service ReleaseService) createReleasePath(app conan.Application, name stri
 	return path, err
 }
 
-func (service ReleaseService) copySource(app conan.Application, path string) error {
+func (service ReleaseService) copySource(app ogun.Application, path string) error {
 
 	cacheRoot := applicationPath(app) + "/shared/cached_copy"
 
 	return DirCopy(cacheRoot, path)
 }
 
-func (service ReleaseService) Delete(release conan.Release) error {
+func (service ReleaseService) Delete(release ogun.Release) error {
 	return fmt.Errorf("not implemented")
 }

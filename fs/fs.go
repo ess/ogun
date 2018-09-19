@@ -12,7 +12,7 @@ import (
 
 	"github.com/spf13/afero"
 
-	"github.com/ess/conan"
+	"github.com/ess/ogun"
 )
 
 var Root = afero.NewOsFs()
@@ -160,7 +160,7 @@ var Tar = func(src string, destination string) error {
 
 func CreateBuildLog(application string, name string) (afero.File, error) {
 	logName := "build-" + name + ".log"
-	logPath := applicationPath(conan.Application{Name: application}) + "/shared/build_logs/"
+	logPath := applicationPath(ogun.Application{Name: application}) + "/shared/build_logs/"
 
 	err := CreateDir(logPath, 0755)
 	if err != nil {
