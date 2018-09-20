@@ -45,7 +45,8 @@ func (service ReleaseService) applyConfig(release ogun.Release) error {
 }
 
 func (service ReleaseService) Build(release ogun.Release, pack ogun.Buildpack) error {
-	compile := buildpackPath(pack) + "/bin/compile"
+	compile := pack.Location + "/bin/compile"
+	//compile := buildpackPath(pack) + "/bin/compile"
 	buildPath := applicationPath(release.Application) + "/builds/" + release.Name
 
 	// applyConfig or bail

@@ -15,25 +15,62 @@ func NewBuildpackService(logger ogun.Logger) BuildpackService {
 	return BuildpackService{logger: logger}
 }
 
-func (service BuildpackService) Get(name string) (ogun.Buildpack, error) {
-	context := "buildpack-get"
-	path := buildpackRoot() + name
-	detect := path + "/bin/detect"
-	compile := path + "/bin/compile"
+func (service BuildpackService) validate(pack ogun.Buildpack) error {
+	base := pack.Location
 
-	if !FileExists(path) || !FileExists(detect) || !FileExists(compile) {
-		message := name + " is not a valid buildpack"
+	detect := base + "/bin/detect"
+	compile := base + "/bin/compile"
 
-		service.logger.Error(context, message)
-
-		return ogun.Buildpack{}, fmt.Errorf(message)
+	for _, path := range []string{base, detect, compile} {
+		if !FileExists(path) {
+			return fmt.Errorf("%s does not exist", path)
+		}
 	}
 
-	return ogun.Buildpack{Name: name}, nil
+	return nil
+}
+
+func (service BuildpackService) Get(name string) (ogun.Buildpack, error) {
+	context := "buildpack-get"
+
+	pack := ogun.Buildpack{Name: name, Location: buildpackRoot() + name}
+
+	err := service.validate(pack)
+	if err != nil {
+		message := name + " is not a valid buildpack"
+		service.logger.Error(context, message)
+		return pack, fmt.Errorf(message)
+	}
+
+	return pack, nil
+}
+
+func (service BuildpackService) custom(application ogun.Application) (ogun.Buildpack, error) {
+
+	location := applicationPath(application) + "/shared/cached_copy/.ogun/buildpack"
+
+	pack := ogun.Buildpack{Name: "custom", Location: location}
+
+	err := service.validate(pack)
+	if err != nil {
+		return pack, err
+	}
+
+	return pack, nil
+
 }
 
 func (service BuildpackService) Detect(application ogun.Application) (ogun.Buildpack, error) {
 	context := "buildpack-detect"
+
+	service.logger.Info(context, "Checking for a custom buildpack ...")
+	custom, customErr := service.custom(application)
+	if customErr == nil {
+		service.logger.Info(context, "Custom buildpack found.")
+		return custom, nil
+	}
+	service.logger.Info(context, "Didn't find a valid custom buildpack")
+
 	detected := make([]ogun.Buildpack, 0)
 
 	for _, pack := range service.all() {
@@ -71,12 +108,13 @@ func (service BuildpackService) Detect(application ogun.Application) (ogun.Build
 
 func (service BuildpackService) all() []ogun.Buildpack {
 	buildpacks := make([]ogun.Buildpack, 0)
+	root := buildpackRoot()
 
-	if candidates, err := ReadDir(buildpackRoot()); err == nil {
+	if candidates, err := ReadDir(root); err == nil {
 
 		for _, info := range candidates {
 			name := Basename(info.Name())
-			buildpacks = append(buildpacks, ogun.Buildpack{Name: name})
+			buildpacks = append(buildpacks, ogun.Buildpack{Name: name, Location: root + "/" + name})
 		}
 	}
 
