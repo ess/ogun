@@ -63,13 +63,18 @@ func newPassThrough(log ogun.Logger, context string, level string, output *bytes
 func (p *passThrough) Write(d []byte) (int, error) {
 	p.output.Write(d)
 
-	line := strings.TrimSpace(string(d))
+	//line := strings.TrimSpace(string(d))
+	lines := strings.Split(string(d), "\n")
 
-	switch p.level {
-	case "error":
-		p.log.Error(p.context, line)
-	default:
-		p.log.Info(p.context, line)
+	for _, line := range lines {
+		if len(line) > 0 {
+			switch p.level {
+			case "error":
+				p.log.Error(p.context, line)
+			default:
+				p.log.Info(p.context, line)
+			}
+		}
 	}
 
 	return len(d), nil
