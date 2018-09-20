@@ -177,3 +177,13 @@ func ReadDir(path string) ([]os.FileInfo, error) {
 func Basename(path string) string {
 	return filepath.Base(path)
 }
+
+func Stat(path string) (os.FileInfo, error) {
+	return Root.Stat(path)
+}
+
+func Executable(path string) bool {
+	info, _ := Stat(path)
+
+	return (info.Mode()&0100 == 0100)
+}

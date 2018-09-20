@@ -27,6 +27,12 @@ func (service BuildpackService) validate(pack ogun.Buildpack) error {
 		}
 	}
 
+	for _, path := range []string{detect, compile} {
+		if !Executable(path) {
+			return fmt.Errorf("%s is not executable", path)
+		}
+	}
+
 	return nil
 }
 
