@@ -55,8 +55,10 @@ func (service ReleaseService) Build(release ogun.Release, pack ogun.Buildpack) e
 		return err
 	}
 
+	vars := NewVariableService(service.Logger)
+
 	runner := exec.NewLoggedRunner(pack.Name+"/compile", service.Logger)
-	_, err = runner.Execute(compile + " " + buildPath + " " + cachePath(release.Application))
+	_, err = runner.Execute(compile+" "+buildPath+" "+cachePath(release.Application), vars.All(release.Application))
 
 	if err != nil {
 		service.Logger.Error("build", "Compiling release "+release.Name+" failed")

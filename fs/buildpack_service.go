@@ -131,7 +131,7 @@ func (service BuildpackService) detect(app ogun.Application, pack ogun.Buildpack
 	detectPath := buildpackPath(pack) + "/bin/detect"
 	cacheRoot := applicationPath(app) + "/shared/cached_copy"
 
-	_, err := os.NewRunner().Execute(detectPath + " " + cacheRoot)
+	_, err := os.NewRunner().Execute(detectPath+" "+cacheRoot, nil)
 
 	return err
 }

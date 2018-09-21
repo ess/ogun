@@ -18,8 +18,13 @@ func NewLoggedRunner(context string, logger ogun.Logger) *LoggedRunner {
 	return &LoggedRunner{context: context, logger: logger}
 }
 
-func (runner *LoggedRunner) Execute(command string) ([]byte, error) {
+func (runner *LoggedRunner) Execute(command string, vars []ogun.Variable) ([]byte, error) {
 	cmd := exec.Command("bash", "-c", command)
+
+	if len(vars) > 0 {
+		cmd.Env = varsToStrings(vars)
+	}
+
 	output := make([]byte, 0)
 	buf := bytes.NewBuffer(output)
 
