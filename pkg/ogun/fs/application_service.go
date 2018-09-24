@@ -1,6 +1,8 @@
 package fs
 
 import (
+	"fmt"
+
 	"github.com/ess/ogun/pkg/ogun"
 )
 
@@ -13,5 +15,11 @@ func NewApplicationService(logger ogun.Logger) ApplicationService {
 }
 
 func (service ApplicationService) Get(name string) (ogun.Application, error) {
-	return ogun.Application{Name: name}, nil
+	app := ogun.Application{Name: name}
+
+	if !DirectoryExists(applicationPath(app)) {
+		return app, fmt.Errorf("no application named %s found", name)
+	}
+
+	return app, nil
 }

@@ -14,6 +14,25 @@
   version = "v0.7.6"
 
 [[projects]]
+  digest = "1:5278bf5a9fed4bf8cb7cee921ccb5b657849e9b195f507a10599c0560e6e59e7"
+  name = "github.com/brianvoe/gofakeit"
+  packages = [
+    ".",
+    "data",
+  ]
+  pruneopts = "UT"
+  revision = "df4975330df29aa30c268a4c16aabbbe6263fc2d"
+  version = "v3.12.1"
+
+[[projects]]
+  branch = "master"
+  digest = "1:cc439e1d9d8cff3d575642f5401033b00f2b8d0cd9f859db45604701c990879a"
+  name = "github.com/corpix/uarand"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "2b8494104d86337cdd41d0a49cbed8e4583c0ab4"
+
+[[projects]]
   digest = "1:026cf4326cf9b04583186ca4c585f6e85fd03ef384d48f4aa139b460c6916fea"
   name = "github.com/ess/jamaica"
   packages = ["."]
@@ -22,12 +41,12 @@
   version = "v1.0.2"
 
 [[projects]]
-  digest = "1:b4815cac39fbde09ce50c62aea6983503233c4c96d23f6ff22987ee6daf4717e"
+  digest = "1:3c361d1e8e774937a0152941e61b0930481caf5434a29caee993ebe757b9701f"
   name = "github.com/ess/kennel"
   packages = ["."]
   pruneopts = "UT"
-  revision = "e18fdabd2a98463f443a8a44466879da0b8da599"
-  version = "v0.0.3"
+  revision = "c5800b83162fd4a7d25d8db715d5dc86cc2fd7fb"
+  version = "v0.0.4"
 
 [[projects]]
   digest = "1:dd94c6b5df0f337b731fd89334ec0c4dfc758eaf27e4104b6f733936c7291fb5"
@@ -76,6 +95,14 @@
   version = "v1.0.0"
 
 [[projects]]
+  branch = "master"
+  digest = "1:22725c01ecd8ed0c0f0078944305a57053340d92878b02db925c660cc4accf64"
+  name = "github.com/icrowley/fake"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "4178557ae428460c3780a381c824a1f3aceb6325"
+
+[[projects]]
   digest = "1:870d441fe217b8e689d7949fef6e43efbc787e50f200cb1e70dbca9204a1d6be"
   name = "github.com/inconshreveable/mousetrap"
   packages = ["."]
@@ -108,12 +135,12 @@
   version = "v1.2.0"
 
 [[projects]]
-  digest = "1:3b8f5d88e2b182b77f04355ed40c8810e516913bedc51b4ffd17ec506613a90e"
+  digest = "1:d867dfa6751c8d7a435821ad3b736310c2ed68945d05b50fb9d23aee0540c8cc"
   name = "github.com/sirupsen/logrus"
   packages = ["."]
   pruneopts = "UT"
-  revision = "a3f95b5c423586578a4e099b11a46c2479628cac"
-  version = "1.0.2"
+  revision = "3e01752db0189b9157070a0e1668a620f9a85da2"
+  version = "v1.0.6"
 
 [[projects]]
   digest = "1:6a4a11ba764a56d2758899ec6f3848d24698d48442ebce85ee7a3f63284526cd"
@@ -168,9 +195,20 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:4c18b929ff2f30ebf16c43fd9e0755fad03b290af199c5bcd82dde4c80cf8781"
+  digest = "1:3f3a05ae0b95893d90b9b3b5afdb79a9b3d96e4e36e099d841ae602e4aca0da8"
+  name = "golang.org/x/crypto"
+  packages = ["ssh/terminal"]
+  pruneopts = "UT"
+  revision = "0e37d006457bf46f9e6692014ba72ef82c33022c"
+
+[[projects]]
+  branch = "master"
+  digest = "1:75cb7164c3c9e028922e69b10842159549ab96ffc4800ea189c4a6865dc3bc08"
   name = "golang.org/x/sys"
-  packages = ["unix"]
+  packages = [
+    "unix",
+    "windows",
+  ]
   pruneopts = "UT"
   revision = "90868a75fefd03942536221d7c0e2f84ec62a668"
 
@@ -202,10 +240,12 @@
   analyzer-version = 1
   input-imports = [
     "github.com/DATA-DOG/godog",
+    "github.com/brianvoe/gofakeit",
     "github.com/ess/jamaica",
     "github.com/ess/kennel",
     "github.com/ess/mockable",
     "github.com/ess/testscope",
+    "github.com/icrowley/fake",
     "github.com/sirupsen/logrus",
     "github.com/spf13/afero",
     "github.com/spf13/cobra",

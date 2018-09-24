@@ -3,6 +3,8 @@ package kennel
 type Suite interface {
 	Step(interface{}, interface{})
 	BeforeScenario(func(interface{}))
+	BeforeSuite(func())
+	AfterSuite(func())
 }
 
 type Stepper interface {

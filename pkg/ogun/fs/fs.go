@@ -38,6 +38,27 @@ var FileExists = func(path string) bool {
 	return true
 }
 
+var DirectoryExists = func(path string) bool {
+	if !FileExists(path) {
+		return false
+	}
+
+	if !IsDir(path) {
+		return false
+	}
+
+	return true
+}
+
+var IsDir = func(path string) bool {
+	info, err := Root.Stat(path)
+	if err != nil {
+		return false
+	}
+
+	return info.IsDir()
+}
+
 func Walk(path string, walkFunc filepath.WalkFunc) error {
 	return afero.Walk(Root, path, walkFunc)
 }
