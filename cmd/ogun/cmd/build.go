@@ -5,8 +5,8 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/ess/ogun/fs"
-	"github.com/ess/ogun/log"
+	"github.com/ess/ogun/pkg/ogun/fs"
+	"github.com/ess/ogun/pkg/ogun/log"
 
 	"github.com/ess/ogun/cmd/ogun/workflows"
 )

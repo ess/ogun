@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/ess/ogun"
+	"github.com/ess/ogun/pkg/ogun"
 )
 
 type BuildingAnApp struct {

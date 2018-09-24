@@ -2,6 +2,53 @@
 
 
 [[projects]]
+  digest = "1:63e35f61c1d659416dc2d27d873689a9aef81701fd077fa4686e3d6edccac3dc"
+  name = "github.com/DATA-DOG/godog"
+  packages = [
+    ".",
+    "colors",
+    "gherkin",
+  ]
+  pruneopts = "UT"
+  revision = "0371765570d36374bef4ab9f62ed0491f0862a3c"
+  version = "v0.7.6"
+
+[[projects]]
+  digest = "1:026cf4326cf9b04583186ca4c585f6e85fd03ef384d48f4aa139b460c6916fea"
+  name = "github.com/ess/jamaica"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "cb904aab2b69f81615136a0f9c781395b553e21c"
+  version = "v1.0.2"
+
+[[projects]]
+  digest = "1:b4815cac39fbde09ce50c62aea6983503233c4c96d23f6ff22987ee6daf4717e"
+  name = "github.com/ess/kennel"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "e18fdabd2a98463f443a8a44466879da0b8da599"
+  version = "v0.0.3"
+
+[[projects]]
+  digest = "1:dd94c6b5df0f337b731fd89334ec0c4dfc758eaf27e4104b6f733936c7291fb5"
+  name = "github.com/ess/mockable"
+  packages = [
+    ".",
+    "core",
+  ]
+  pruneopts = "UT"
+  revision = "3f051ad96b0975dbe70b2b3c6bfd58ff09e02e43"
+  version = "v0.2.0"
+
+[[projects]]
+  digest = "1:06da768532f25576af150e8e02a81c59c023af563a4a1ab55a06efd2c426136d"
+  name = "github.com/ess/testscope"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "8b840b19638ed86ab17a1da4ae88a84acd3fe8c5"
+  version = "v1.0.0"
+
+[[projects]]
   digest = "1:abeb38ade3f32a92943e5be54f55ed6d6e3b6602761d74b4aab4c9dd45c18abd"
   name = "github.com/fsnotify/fsnotify"
   packages = ["."]
@@ -61,12 +108,12 @@
   version = "v1.2.0"
 
 [[projects]]
-  digest = "1:d867dfa6751c8d7a435821ad3b736310c2ed68945d05b50fb9d23aee0540c8cc"
+  digest = "1:3b8f5d88e2b182b77f04355ed40c8810e516913bedc51b4ffd17ec506613a90e"
   name = "github.com/sirupsen/logrus"
   packages = ["."]
   pruneopts = "UT"
-  revision = "3e01752db0189b9157070a0e1668a620f9a85da2"
-  version = "v1.0.6"
+  revision = "a3f95b5c423586578a4e099b11a46c2479628cac"
+  version = "1.0.2"
 
 [[projects]]
   digest = "1:6a4a11ba764a56d2758899ec6f3848d24698d48442ebce85ee7a3f63284526cd"
@@ -121,22 +168,11 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:3f3a05ae0b95893d90b9b3b5afdb79a9b3d96e4e36e099d841ae602e4aca0da8"
-  name = "golang.org/x/crypto"
-  packages = ["ssh/terminal"]
-  pruneopts = "UT"
-  revision = "0e37d006457bf46f9e6692014ba72ef82c33022c"
-
-[[projects]]
-  branch = "master"
-  digest = "1:49edbccdd6fb213dcf45486b0c939b788740451e5f2ff77aa42ca742d10da449"
+  digest = "1:4c18b929ff2f30ebf16c43fd9e0755fad03b290af199c5bcd82dde4c80cf8781"
   name = "golang.org/x/sys"
-  packages = [
-    "unix",
-    "windows",
-  ]
+  packages = ["unix"]
   pruneopts = "UT"
-  revision = "1561086e645b2809fb9f8a1e2a38160bf8d53bf4"
+  revision = "90868a75fefd03942536221d7c0e2f84ec62a668"
 
 [[projects]]
   digest = "1:8029e9743749d4be5bc9f7d42ea1659471767860f0cdc34d37c3111bd308a295"
@@ -165,6 +201,11 @@
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
+    "github.com/DATA-DOG/godog",
+    "github.com/ess/jamaica",
+    "github.com/ess/kennel",
+    "github.com/ess/mockable",
+    "github.com/ess/testscope",
     "github.com/sirupsen/logrus",
     "github.com/spf13/afero",
     "github.com/spf13/cobra",
