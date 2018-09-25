@@ -84,7 +84,7 @@ func (service BuildpackService) custom(application ogun.Application) (ogun.Build
 	context := "detect-custom"
 
 	service.logger.Info(context, "Checking for a custom buildpack ...")
-	location := applicationPath(application) + "/shared/cached_copy/.ogun/buildpack"
+	location := applicationPath(application) + "/shared/cached-copy/.ogun/buildpack"
 
 	pack := ogun.Buildpack{Name: "custom", Location: location}
 
@@ -116,7 +116,7 @@ func (service BuildpackService) all() []ogun.Buildpack {
 
 func (service BuildpackService) detect(app ogun.Application, pack ogun.Buildpack) error {
 	detectPath := buildpackPath(pack) + "/bin/detect"
-	cacheRoot := applicationPath(app) + "/shared/cached_copy"
+	cacheRoot := applicationPath(app) + "/shared/cached-copy"
 
 	_, err := service.runner.Execute(detectPath+" "+cacheRoot, nil)
 

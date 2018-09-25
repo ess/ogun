@@ -110,7 +110,7 @@ func (service ReleaseService) createReleasePath(app ogun.Application, name strin
 
 func (service ReleaseService) copySource(app ogun.Application, path string) error {
 
-	cacheRoot := applicationPath(app) + "/shared/cached_copy"
+	cacheRoot := applicationPath(app) + "/shared/cached-copy"
 
 	return DirCopy(cacheRoot, path)
 }
