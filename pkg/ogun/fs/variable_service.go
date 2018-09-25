@@ -32,6 +32,10 @@ func (service VariableService) All(app ogun.Application) []ogun.Variable {
 		envs = service.stringsToVars(strings.Split(string(aggregate), "\n"))
 	}
 
+	path := os.Getenv("PATH")
+
+	envs = append(envs, ogun.Variable("PATH="+path))
+
 	return envs
 }
 
