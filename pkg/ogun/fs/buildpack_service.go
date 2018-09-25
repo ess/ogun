@@ -107,7 +107,7 @@ func (service BuildpackService) all() []ogun.Buildpack {
 
 		for _, info := range candidates {
 			name := Basename(info.Name())
-			buildpacks = append(buildpacks, ogun.Buildpack{Name: name, Location: root + name})
+			buildpacks = append(buildpacks, ogun.Buildpack{Name: name, Location: root + "/" + name})
 		}
 	}
 
