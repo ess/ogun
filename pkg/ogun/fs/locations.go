@@ -17,11 +17,11 @@ func cachePath(app ogun.Application) string {
 }
 
 func buildpackRoot() string {
-	return "/engineyard/buildpacks/"
+	return "/engineyard/buildpacks"
 }
 
 func buildpackPath(pack ogun.Buildpack) string {
-	return buildpackRoot() + pack.Name
+	return buildpackRoot() + "/" + pack.Name
 }
 
 func releasePath(release ogun.Release) string {
