@@ -23,3 +23,7 @@ func buildpackRoot() string {
 func buildpackPath(pack ogun.Buildpack) string {
 	return buildpackRoot() + pack.Name
 }
+
+func releasePath(release ogun.Release) string {
+	return applicationPath(release.Application) + "/builds/" + release.Name
+}

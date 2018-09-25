@@ -10,9 +10,10 @@ import (
 
 func TestApplicationService_Get(t *testing.T) {
 	testscope.SkipUnlessUnit(t)
+
 	appBase := "/data"
 	appName := gofakeit.Generate("????????????")
-	service := &ApplicationService{}
+	service := ApplicationService{}
 
 	t.Run("when the application does not exist", func(t *testing.T) {
 		Root = afero.NewMemMapFs()

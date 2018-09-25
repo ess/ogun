@@ -11,8 +11,9 @@ import (
 	"github.com/ess/jamaica"
 	"github.com/ess/kennel"
 	"github.com/ess/mockable"
-	"github.com/ess/ogun/cmd/ogun/cmd"
 	"github.com/ess/testscope"
+
+	"github.com/ess/ogun/cmd/ogun/cmd"
 )
 
 var commandOutput string

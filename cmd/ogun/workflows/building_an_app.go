@@ -8,7 +8,6 @@ import (
 )
 
 type BuildingAnApp struct {
-	BuildpackName   string
 	ApplicationName string
 	ReleaseName     string
 	Apps            ogun.ApplicationService
@@ -72,14 +71,7 @@ func (workflow *BuildingAnApp) loadApplication() (ogun.Application, error) {
 }
 
 func (workflow *BuildingAnApp) loadBuildpack(app ogun.Application) (ogun.Buildpack, error) {
-	var pack ogun.Buildpack
-	var err error
-
-	if workflow.BuildpackName == "detect" {
-		pack, err = workflow.Packs.Detect(app)
-	} else {
-		pack, err = workflow.Packs.Get(workflow.BuildpackName)
-	}
+	pack, err := workflow.Packs.Detect(app)
 
 	if err != nil {
 		workflow.Logger.Error(

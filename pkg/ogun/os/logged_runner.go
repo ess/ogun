@@ -14,7 +14,7 @@ type LoggedRunner struct {
 	logger  ogun.Logger
 }
 
-func NewLoggedRunner(context string, logger ogun.Logger) *LoggedRunner {
+var NewLoggedRunner = func(context string, logger ogun.Logger) ogun.Runner {
 	return &LoggedRunner{context: context, logger: logger}
 }
 

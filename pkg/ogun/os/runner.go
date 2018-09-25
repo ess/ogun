@@ -8,7 +8,7 @@ import (
 
 type Runner struct{}
 
-func NewRunner() *Runner {
+var NewRunner = func() ogun.Runner {
 	return &Runner{}
 }
 

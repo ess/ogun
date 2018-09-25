@@ -6,6 +6,5 @@ type Buildpack struct {
 }
 
 type BuildpackService interface {
-	Get(string) (Buildpack, error)
 	Detect(Application) (Buildpack, error)
 }

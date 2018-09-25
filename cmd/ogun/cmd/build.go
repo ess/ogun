@@ -6,7 +6,6 @@ import (
 	"github.com/spf13/cobra"
 
 	"github.com/ess/ogun/pkg/ogun/fs"
-	"github.com/ess/ogun/pkg/ogun/log"
 
 	"github.com/ess/ogun/cmd/ogun/workflows"
 )
@@ -14,18 +13,12 @@ import (
 // 2018 08 29 22 43 47
 
 var buildCmd = &cobra.Command{
-	Use:   "build <application>",
+	Use:   "build <application name>",
 	Short: "Build a portable application package",
 	Long: `Build a portable application package
 
 Given an application name, build the application and generate an all-inclusive
-tarball for distribution.
-
-The name for the specific buildpack to use to build the application can be
-provided with the --buildpack flag.
-
-If no specific buildpack is provided, an attempt is made to detect the proper
-buildpack based on the application source.`,
+tarball for distribution.`,
 
 	PreRunE: func(cmd *cobra.Command, args []string) error {
 		if len(args) != 1 {
@@ -37,7 +30,6 @@ buildpack based on the application source.`,
 
 	RunE: func(cmd *cobra.Command, args []string) error {
 		release := workflows.GenerateBuildNumber()
-		logger := log.NewLogger()
 		logfile, err := fs.CreateBuildLog(args[0], release)
 		if err != nil {
 			return fmt.Errorf("could not open log")
@@ -45,17 +37,16 @@ buildpack based on the application source.`,
 
 		defer logfile.Close()
 
-		logger.AddOutput(logfile)
+		Logger.AddOutput(logfile)
 
 		return workflows.Perform(
 			&workflows.BuildingAnApp{
-				BuildpackName:   buildPackName,
 				ApplicationName: args[0],
 				ReleaseName:     release,
-				Apps:            fs.NewApplicationService(logger),
-				Packs:           fs.NewBuildpackService(logger),
-				Releases:        fs.NewReleaseService(logger),
-				Logger:          logger,
+				Apps:            fs.NewApplicationService(Logger),
+				Packs:           fs.NewBuildpackService(Logger),
+				Releases:        fs.NewReleaseService(Logger),
+				Logger:          Logger,
 			},
 		)
 	},
@@ -64,11 +55,6 @@ buildpack based on the application source.`,
 	SilenceErrors: true,
 }
 
-var buildPackName string
-
 func init() {
-	buildCmd.Flags().StringVar(&buildPackName, "buildpack", "detect",
-		"The buildpack to build the application")
-
 	RootCmd.AddCommand(buildCmd)
 }

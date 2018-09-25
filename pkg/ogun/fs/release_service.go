@@ -27,23 +27,6 @@ func (service ReleaseService) Create(name string, app ogun.Application) (ogun.Re
 	return rel, err
 }
 
-func (service ReleaseService) applyConfig(release ogun.Release) error {
-	context := "apply-config"
-	app := release.Application
-
-	source := configPath(app)
-	destination := applicationPath(app) + "/builds/" + release.Name + "/config"
-
-	err := DirCopy(source, destination)
-	if err != nil {
-		service.Logger.Error(context, "Could not apply shared config to build")
-	} else {
-		service.Logger.Info(context, "Applied shared config to build")
-	}
-
-	return err
-}
-
 func (service ReleaseService) Build(release ogun.Release, pack ogun.Buildpack) error {
 	compile := pack.Location + "/bin/compile"
 	//compile := buildpackPath(pack) + "/bin/compile"
@@ -96,6 +79,27 @@ func (service ReleaseService) Package(release ogun.Release) error {
 	return nil
 }
 
+func (service ReleaseService) Delete(release ogun.Release) error {
+	return fmt.Errorf("not implemented")
+}
+
+func (service ReleaseService) applyConfig(release ogun.Release) error {
+	context := "apply-config"
+	app := release.Application
+
+	source := configPath(app)
+	destination := applicationPath(app) + "/builds/" + release.Name + "/config"
+
+	err := DirCopy(source, destination)
+	if err != nil {
+		service.Logger.Error(context, "Could not apply shared config to build")
+	} else {
+		service.Logger.Info(context, "Applied shared config to build")
+	}
+
+	return err
+}
+
 func (service ReleaseService) createReleasePath(app ogun.Application, name string) (string, error) {
 	path := applicationPath(app) + "/builds/" + name
 
@@ -109,8 +113,4 @@ func (service ReleaseService) copySource(app ogun.Application, path string) erro
 	cacheRoot := applicationPath(app) + "/shared/cached_copy"
 
 	return DirCopy(cacheRoot, path)
-}
-
-func (service ReleaseService) Delete(release ogun.Release) error {
-	return fmt.Errorf("not implemented")
 }
