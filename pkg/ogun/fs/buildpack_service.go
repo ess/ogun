@@ -90,11 +90,11 @@ func (service BuildpackService) custom(application ogun.Application) (ogun.Build
 
 	err := service.validate(pack)
 	if err != nil {
-		service.logger.Info(context, "Custom buildpack found!")
+		service.logger.Info(context, "Didn't find a valid custom buildpack")
 		return pack, err
 	}
 
-	service.logger.Info(context, "Didn't find a valid custom buildpack")
+	service.logger.Info(context, "Custom buildpack found!")
 	return pack, nil
 
 }
