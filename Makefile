@@ -13,6 +13,8 @@ TESTFILES=`go list ./... | grep -v /vendor/`
 
 # Setup the -ldflags option for go build here, interpolate the variable values
 LDFLAGS=-ldflags "-w -s \
+				-X ${PACKAGE}/cmd.Version=${VERSION} \
+				-X ${PACKAGE}/cmd.Build=${BUILD} \
 				-extldflags '-static'"
 
 # Build for the current platform
