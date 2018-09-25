@@ -2,6 +2,72 @@
 
 
 [[projects]]
+  digest = "1:63e35f61c1d659416dc2d27d873689a9aef81701fd077fa4686e3d6edccac3dc"
+  name = "github.com/DATA-DOG/godog"
+  packages = [
+    ".",
+    "colors",
+    "gherkin",
+  ]
+  pruneopts = "UT"
+  revision = "0371765570d36374bef4ab9f62ed0491f0862a3c"
+  version = "v0.7.6"
+
+[[projects]]
+  digest = "1:5278bf5a9fed4bf8cb7cee921ccb5b657849e9b195f507a10599c0560e6e59e7"
+  name = "github.com/brianvoe/gofakeit"
+  packages = [
+    ".",
+    "data",
+  ]
+  pruneopts = "UT"
+  revision = "df4975330df29aa30c268a4c16aabbbe6263fc2d"
+  version = "v3.12.1"
+
+[[projects]]
+  branch = "master"
+  digest = "1:cc439e1d9d8cff3d575642f5401033b00f2b8d0cd9f859db45604701c990879a"
+  name = "github.com/corpix/uarand"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "2b8494104d86337cdd41d0a49cbed8e4583c0ab4"
+
+[[projects]]
+  digest = "1:026cf4326cf9b04583186ca4c585f6e85fd03ef384d48f4aa139b460c6916fea"
+  name = "github.com/ess/jamaica"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "cb904aab2b69f81615136a0f9c781395b553e21c"
+  version = "v1.0.2"
+
+[[projects]]
+  digest = "1:3c361d1e8e774937a0152941e61b0930481caf5434a29caee993ebe757b9701f"
+  name = "github.com/ess/kennel"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "c5800b83162fd4a7d25d8db715d5dc86cc2fd7fb"
+  version = "v0.0.4"
+
+[[projects]]
+  digest = "1:dd94c6b5df0f337b731fd89334ec0c4dfc758eaf27e4104b6f733936c7291fb5"
+  name = "github.com/ess/mockable"
+  packages = [
+    ".",
+    "core",
+  ]
+  pruneopts = "UT"
+  revision = "3f051ad96b0975dbe70b2b3c6bfd58ff09e02e43"
+  version = "v0.2.0"
+
+[[projects]]
+  digest = "1:06da768532f25576af150e8e02a81c59c023af563a4a1ab55a06efd2c426136d"
+  name = "github.com/ess/testscope"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "8b840b19638ed86ab17a1da4ae88a84acd3fe8c5"
+  version = "v1.0.0"
+
+[[projects]]
   digest = "1:abeb38ade3f32a92943e5be54f55ed6d6e3b6602761d74b4aab4c9dd45c18abd"
   name = "github.com/fsnotify/fsnotify"
   packages = ["."]
@@ -27,6 +93,14 @@
   pruneopts = "UT"
   revision = "8cb6e5b959231cc1119e43259c4a608f9c51a241"
   version = "v1.0.0"
+
+[[projects]]
+  branch = "master"
+  digest = "1:22725c01ecd8ed0c0f0078944305a57053340d92878b02db925c660cc4accf64"
+  name = "github.com/icrowley/fake"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "4178557ae428460c3780a381c824a1f3aceb6325"
 
 [[projects]]
   digest = "1:870d441fe217b8e689d7949fef6e43efbc787e50f200cb1e70dbca9204a1d6be"
@@ -129,14 +203,14 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:49edbccdd6fb213dcf45486b0c939b788740451e5f2ff77aa42ca742d10da449"
+  digest = "1:75cb7164c3c9e028922e69b10842159549ab96ffc4800ea189c4a6865dc3bc08"
   name = "golang.org/x/sys"
   packages = [
     "unix",
     "windows",
   ]
   pruneopts = "UT"
-  revision = "1561086e645b2809fb9f8a1e2a38160bf8d53bf4"
+  revision = "90868a75fefd03942536221d7c0e2f84ec62a668"
 
 [[projects]]
   digest = "1:8029e9743749d4be5bc9f7d42ea1659471767860f0cdc34d37c3111bd308a295"
@@ -165,6 +239,13 @@
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
+    "github.com/DATA-DOG/godog",
+    "github.com/brianvoe/gofakeit",
+    "github.com/ess/jamaica",
+    "github.com/ess/kennel",
+    "github.com/ess/mockable",
+    "github.com/ess/testscope",
+    "github.com/icrowley/fake",
     "github.com/sirupsen/logrus",
     "github.com/spf13/afero",
     "github.com/spf13/cobra",
