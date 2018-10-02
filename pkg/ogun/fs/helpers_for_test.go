@@ -24,10 +24,15 @@ func stubApplication() {
 	app = ogun.Application{Name: appName}
 
 	CreateDir(applicationPath(app), 0755)
-	CreateDir(applicationPath(app)+"/shared/cached_copy", 0755)
+	CreateDir(applicationPath(app)+"/shared/cached-copy", 0755)
 
-	ohai, _ := Root.Create(applicationPath(app) + "/shared/cached_copy/ohai")
+	ohaipath := applicationPath(app) + "/shared/cached-copy/ohai"
+	ohai, _ := Root.Create(ohaipath)
 	ohai.Close()
+
+	if !FileExists(ohaipath) {
+		panic("what the fuck man")
+	}
 }
 
 func stubPack(pack ogun.Buildpack) error {

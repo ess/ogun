@@ -22,7 +22,7 @@ func TestBuildpackService_Detect(t *testing.T) {
 	t.Run("when there's a custom buildpack", func(t *testing.T) {
 		setupDetect()
 
-		pack := ogun.Buildpack{Name: "custom", Location: applicationPath(app) + "/shared/cached_copy/.ogun/buildpack"}
+		pack := ogun.Buildpack{Name: "custom", Location: applicationPath(app) + "/shared/cached-copy/.ogun/buildpack"}
 
 		err := stubPack(pack)
 		if err != nil {
