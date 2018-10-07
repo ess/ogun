@@ -123,7 +123,7 @@ var Tar = func(src string, destination string) error {
 	}
 
 	// ensure the src actually exists before trying to tar it
-	if _, err := os.Stat(src); err != nil {
+	if _, err := Root.Stat(src); err != nil {
 		return err
 	}
 
@@ -134,7 +134,7 @@ var Tar = func(src string, destination string) error {
 	defer tw.Close()
 
 	// walk path
-	return filepath.Walk(src, func(file string, fi os.FileInfo, err error) error {
+	return Walk(src, func(file string, fi os.FileInfo, err error) error {
 
 		// return on any error
 		if err != nil {

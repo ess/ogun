@@ -10,10 +10,9 @@ Feature: Building an App
 
   Scenario: Default Behavior
     When I run `ogun build toast`
-    #Then the shared config is applied to the build
-    #And the proper buildpack is detected
-    #And a new toast slug is generated
-    #And the build log is saved
+    Then the shared config is applied to the build
+    And the proper buildpack is detected
+    And a new toast slug is generated
 
 
 

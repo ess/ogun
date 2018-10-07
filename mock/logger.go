@@ -3,6 +3,8 @@ package mock
 import (
 	"fmt"
 	"io"
+
+	"strings"
 )
 
 type Entry struct {
@@ -45,4 +47,14 @@ func (logger *Logger) Writers() []io.Writer {
 
 func (logger *Logger) Reset() {
 	logger.Entries = make([]*Entry, 0)
+}
+
+func (logger *Logger) Logged() string {
+	output := make([]string, 0)
+
+	for _, entry := range logger.Entries {
+		output = append(output, entry.String())
+	}
+
+	return strings.Join(output, "\n")
 }

@@ -9,13 +9,22 @@ import (
 
 type Runner struct {
 	goodPrefixes []string
+	executed     []string
 }
 
 func NewRunner() *Runner {
-	return &Runner{}
+	return &Runner{
+		goodPrefixes: make([]string, 0),
+		executed:     make([]string, 0),
+	}
+}
+
+func (runner *Runner) record(command string) {
+	runner.executed = append(runner.executed, command)
 }
 
 func (runner *Runner) Execute(command string, vars []ogun.Variable) ([]byte, error) {
+	runner.record(command)
 	if strings.HasSuffix(command, " env") {
 		env := make([]string, 0)
 		for _, variable := range vars {
@@ -42,6 +51,26 @@ func (runner *Runner) Remove(command string) {
 
 func (runner *Runner) Reset() {
 	runner.goodPrefixes = make([]string, 0)
+}
+
+func (runner *Runner) Ran(command string) bool {
+	if runner.countExecutions(command) == 0 {
+		return false
+	}
+
+	return true
+}
+
+func (runner *Runner) countExecutions(prefix string) int {
+	found := 0
+
+	for _, executed := range runner.executed {
+		if strings.HasPrefix(executed, prefix) {
+			found = found + 1
+		}
+	}
+
+	return found
 }
 
 func (runner *Runner) generateError(command string) error {

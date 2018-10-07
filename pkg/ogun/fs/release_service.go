@@ -71,6 +71,7 @@ func (service ReleaseService) Package(release ogun.Release) error {
 
 	err = Tar(buildPath, slugFile)
 	if err != nil {
+		service.Logger.Error(context, err.Error())
 		service.Logger.Error(context, "Could not create package for "+release.Name)
 		return err
 	}
@@ -102,6 +103,8 @@ func (service ReleaseService) applyConfig(release ogun.Release) error {
 
 func (service ReleaseService) createReleasePath(app ogun.Application, name string) (string, error) {
 	path := applicationPath(app) + "/builds/" + name
+
+	service.Logger.Info("create-release-path", "Creating "+path)
 
 	err := CreateDir(path, 0700)
 

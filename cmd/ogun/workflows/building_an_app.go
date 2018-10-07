@@ -99,7 +99,7 @@ func (workflow *BuildingAnApp) createRelease(app ogun.Application) (ogun.Release
 	return release, nil
 }
 
-func GenerateBuildNumber() string {
+var GenerateBuildNumber = func() string {
 	now := time.Now()
 
 	return fmt.Sprintf(
