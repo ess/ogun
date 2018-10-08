@@ -29,11 +29,11 @@ tarball for distribution.`,
 	},
 
 	RunE: func(cmd *cobra.Command, args []string) error {
-		if len(releaseName) == 0 {
-			releaseName = workflows.GenerateBuildNumber()
+		if len(ReleaseName) == 0 {
+			ReleaseName = workflows.GenerateBuildNumber()
 		}
 
-		logfile, err := fs.CreateBuildLog(args[0], releaseName)
+		logfile, err := fs.CreateBuildLog(args[0], ReleaseName)
 		if err != nil {
 			return fmt.Errorf("could not open log")
 		}
@@ -45,7 +45,7 @@ tarball for distribution.`,
 		return workflows.Perform(
 			&workflows.BuildingAnApp{
 				ApplicationName: args[0],
-				ReleaseName:     releaseName,
+				ReleaseName:     ReleaseName,
 				Apps:            fs.NewApplicationService(Logger),
 				Packs:           fs.NewBuildpackService(Logger),
 				Releases:        fs.NewReleaseService(Logger),
@@ -58,11 +58,11 @@ tarball for distribution.`,
 	SilenceErrors: true,
 }
 
-var releaseName string
+var ReleaseName string
 
 func init() {
 	buildCmd.Flags().StringVarP(
-		&releaseName,
+		&ReleaseName,
 		"release",
 		"r",
 		"",

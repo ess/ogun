@@ -161,7 +161,7 @@ var Tar = func(src string, destination string) error {
 		}
 
 		// open files for taring
-		f, err := os.Open(file)
+		f, err := Root.Open(file)
 		if err != nil {
 			return err
 		}

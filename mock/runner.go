@@ -51,6 +51,7 @@ func (runner *Runner) Remove(command string) {
 
 func (runner *Runner) Reset() {
 	runner.goodPrefixes = make([]string, 0)
+	runner.executed = make([]string, 0)
 }
 
 func (runner *Runner) Ran(command string) bool {
